@@ -1,6 +1,7 @@
 "use client"
 import Header from "@/components/Header";
 import { Provider } from "@/components/ui/provider";
+import { Suspense } from "react";
 
 
 export default function RootLayout({
@@ -18,7 +19,9 @@ export default function RootLayout({
           </Header>
         </Provider>
         <Provider>
+        <Suspense fallback={<div>Loading...</div>}>
         {children}
+        </Suspense>
         </Provider>
       </body>
     </html>
