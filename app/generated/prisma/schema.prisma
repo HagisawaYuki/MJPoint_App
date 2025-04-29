@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  username String   @unique
+  password String
+  players  Player[]
+  games    Game[]
+}
+
+model Player {
+  id     Int              @id @default(autoincrement())
+  name   String
+  scores HanshuangScore[]
+  user   User             @relation(fields: [userId], references: [id])
+  userId Int
+}
+
+model Game {
+  id         Int         @id @default(autoincrement())
+  date       String // 年月日まとめて保存
+  hanshuangs Hanshuang[]
+  user       User        @relation(fields: [userId], references: [id])
+  userId     Int
+}
+
+model Hanshuang {
+  id        Int              @id @default(autoincrement())
+  game      Game             @relation(fields: [gameId], references: [id])
+  gameId    Int
+  scores    HanshuangScore[] // 各プレイヤーの点数（中間テーブル）
+  createdAt DateTime         @default(now())
+}
+
+model HanshuangScore {
+  id          Int       @id @default(autoincrement())
+  player      Player    @relation(fields: [playerId], references: [id])
+  playerId    Int
+  hanshuang   Hanshuang @relation(fields: [hanshuangId], references: [id])
+  hanshuangId Int
+  score       Int // プレイヤーの得点（最終点数）
+  chip        Int // チップのやり取りも記録したいなら
+}
