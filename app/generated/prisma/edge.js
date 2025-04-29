@@ -161,6 +161,10 @@ const config = {
         "fromEnvVar": null,
         "value": "darwin-arm64",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -187,8 +191,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../app/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int      @id @default(autoincrement())\n  username String   @unique\n  password String\n  players  Player[]\n  games    Game[]\n}\n\nmodel Player {\n  id     Int              @id @default(autoincrement())\n  name   String\n  scores HanshuangScore[]\n  user   User             @relation(fields: [userId], references: [id])\n  userId Int\n}\n\nmodel Game {\n  id         Int         @id @default(autoincrement())\n  date       String // 年月日まとめて保存\n  hanshuangs Hanshuang[]\n  user       User        @relation(fields: [userId], references: [id])\n  userId     Int\n}\n\nmodel Hanshuang {\n  id        Int              @id @default(autoincrement())\n  game      Game             @relation(fields: [gameId], references: [id])\n  gameId    Int\n  scores    HanshuangScore[] // 各プレイヤーの点数（中間テーブル）\n  createdAt DateTime         @default(now())\n}\n\nmodel HanshuangScore {\n  id          Int       @id @default(autoincrement())\n  player      Player    @relation(fields: [playerId], references: [id])\n  playerId    Int\n  hanshuang   Hanshuang @relation(fields: [hanshuangId], references: [id])\n  hanshuangId Int\n  score       Int // プレイヤーの得点（最終点数）\n  chip        Int // チップのやり取りも記録したいなら\n}\n",
-  "inlineSchemaHash": "6e73e3aea1b2c6ff55e142b6f61c71ce14e829c03a136c2872e2035fe2f8eba5",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../app/generated/prisma\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id       Int      @id @default(autoincrement())\n  username String   @unique\n  password String\n  players  Player[]\n  games    Game[]\n}\n\nmodel Player {\n  id     Int              @id @default(autoincrement())\n  name   String\n  scores HanshuangScore[]\n  user   User             @relation(fields: [userId], references: [id])\n  userId Int\n}\n\nmodel Game {\n  id         Int         @id @default(autoincrement())\n  date       String // 年月日まとめて保存\n  hanshuangs Hanshuang[]\n  user       User        @relation(fields: [userId], references: [id])\n  userId     Int\n}\n\nmodel Hanshuang {\n  id        Int              @id @default(autoincrement())\n  game      Game             @relation(fields: [gameId], references: [id])\n  gameId    Int\n  scores    HanshuangScore[] // 各プレイヤーの点数（中間テーブル）\n  createdAt DateTime         @default(now())\n}\n\nmodel HanshuangScore {\n  id          Int       @id @default(autoincrement())\n  player      Player    @relation(fields: [playerId], references: [id])\n  playerId    Int\n  hanshuang   Hanshuang @relation(fields: [hanshuangId], references: [id])\n  hanshuangId Int\n  score       Int // プレイヤーの得点（最終点数）\n  chip        Int // チップのやり取りも記録したいなら\n}\n",
+  "inlineSchemaHash": "fbcdd8dd37d109a4e90494d173d495dfe0ccb07bd0553974726ee27cfb134daf",
   "copyEngine": true
 }
 config.dirname = '/'

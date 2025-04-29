@@ -1,5 +1,6 @@
-'use server'
 
+'use server'
+export const runtime = "nodejs";
 import prisma from "./prisma"
 import { redirect } from "next/navigation";
 
