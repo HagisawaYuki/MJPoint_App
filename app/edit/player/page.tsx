@@ -11,7 +11,7 @@ export default function Home() {
     const [playerName, setPlayerName] = useState<string>("");
     const {
         register,
-        formState: { errors },
+        // formState: { errors },
     } = useForm<{playerID: Number; playerName: string; name: string}>();
     useEffect(() => {
         const _userID = Number(localStorage.getItem("userID"));

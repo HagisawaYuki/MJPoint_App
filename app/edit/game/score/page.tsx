@@ -13,7 +13,7 @@ export default function Home() {
 
     const {
         register,
-        formState: { errors },
+        // formState: { errors },
     } = useForm<{scoreID: number, score: number, chip: number}>();
     
     useEffect(() => {

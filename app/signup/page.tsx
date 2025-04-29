@@ -9,7 +9,7 @@ import { useEffect } from "react";
 export default function Home() {
     const {
         register,
-        formState: { errors },
+        // formState: { errors },
     } = useForm<{username: string, password: string}>();
     useEffect(() => {
         //ログイン情報リセット

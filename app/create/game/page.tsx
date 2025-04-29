@@ -18,7 +18,7 @@ export default function Create() {
 
     const {
         register,
-        formState: { errors },
+        // formState: { errors },
     } = useForm<{date: Date, isPlayers: number, userID: number}>();
     
     //全playerのデータを取得して、保存

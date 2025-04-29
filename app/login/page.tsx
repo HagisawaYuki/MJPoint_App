@@ -14,7 +14,7 @@ export default function Home() {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        // formState: { errors },
     } = useForm<{username: string, password: string}>();
 
     const submit = async () => {

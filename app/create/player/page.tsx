@@ -12,7 +12,7 @@ export default function Create() {
 
     const {
         register,
-        formState: { errors },
+        // formState: { errors },
     } = useForm<{userID: number, name: string}>();
 
     useEffect(() => {
