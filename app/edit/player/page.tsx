@@ -12,17 +12,21 @@ export default function Home() {
     const {
         register,
         // formState: { errors },
-    } = useForm<{playerID: Number; playerName: string; name: string}>();
+    } = useForm<{playerID: number; playerName: string; name: string}>();
     useEffect(() => {
-        const _userID = Number(localStorage.getItem("userID"));
-        if(_userID === 0){
-            router.push("/")
+        const init = () => {
+            const _userID = Number(localStorage.getItem("userID"));
+            if(_userID === 0){
+                router.push("/")
+            }
+            setPlayerID(Number(localStorage.getItem("editPlayerID")));
+            const localPlayerName = localStorage.getItem("editPlayerName")
+            if(localPlayerName){
+            setPlayerName(JSON.parse(localPlayerName));
+            }
         }
-        setPlayerID(Number(localStorage.getItem("editPlayerID")));
-        const localPlayerName = localStorage.getItem("editPlayerName")
-        
-        localPlayerName && setPlayerName(JSON.parse(localPlayerName));
-    }, []);
+        init();
+    },[router]);
   return (
     <Box display="flex" justifyContent="center">
         <Box width="60%" bg="#EEE" marginTop="5%" padding="5%">

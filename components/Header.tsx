@@ -1,7 +1,5 @@
 "use client"
 import { Box, Link, Button, Text } from "@chakra-ui/react";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
 
 const afterLoginHeaderURLs = [
@@ -11,10 +9,10 @@ const afterLoginHeaderURLs = [
     {name: "サインアップ", href: "/signup"},
 ];
 
-const beforeLoginHeaderURLs = [
-    {name: "ログイン", href: "/login"},
-    {name: "サインアップ", href: "/signup"},
-];
+// const beforeLoginHeaderURLs = [
+//     {name: "ログイン", href: "/login"},
+//     {name: "サインアップ", href: "/signup"},
+// ];
 
 const Header = () => {
     

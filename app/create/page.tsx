@@ -11,7 +11,7 @@ export default function Home() {
       if(_userID === 0){
         router.push("/")
       }
-    }, [])
+    }, [router])
   return (
     <Box display="flex" justifyContent='center' >
         <Box bg="#EEE" w="40%" marginTop="5%" paddingTop="5%" paddingBottom="5%" display="flex" justifyContent='center'>

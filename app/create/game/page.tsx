@@ -35,7 +35,7 @@ export default function Create() {
         }
         createGameInit();
         
-    },[])
+    }, [router])
 
     return(
         <Box display="flex" justifyContent="center">
@@ -75,7 +75,7 @@ export default function Create() {
                                         //selectされているか調べ、すでにselectされているものであったら、配列から削除
                                         if(selectedPlayers?.includes(player.id)){
                                             setSelectedPlayers(
-                                                selectedPlayers.filter((selectedPlayer, index) => (selectedPlayer !== player.id))
+                                                selectedPlayers.filter((selectedPlayer) => (selectedPlayer !== player.id))
                                             )
                                         }
                                     }

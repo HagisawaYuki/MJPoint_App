@@ -1,6 +1,5 @@
 "use client"
 import { createUser, searchUser } from "@/lib/action";
-import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 
 

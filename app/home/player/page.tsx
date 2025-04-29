@@ -5,17 +5,20 @@ import { useRouter } from "next/navigation";
 
 export default function Home() {
   const router = useRouter();
-  const [playerID, setPlayerID] = useState<number>();
+  // const [playerID, setPlayerID] = useState<number>();
   const [playerName, setPlayerName] = useState<string>();
   useEffect(() => {
+    const init = () => {
       const _userID = Number(localStorage.getItem("userID"));
       if(_userID === 0){
         router.push("/")
       }
-      setPlayerID(Number(localStorage.getItem("editPlayerID")));
+      // setPlayerID(Number(localStorage.getItem("editPlayerID")));
       const localPlayerName = localStorage.getItem("editPlayerName")
-      localPlayerName && setPlayerName(JSON.parse(localPlayerName));
-  }, []);
+      if(localPlayerName) setPlayerName(JSON.parse(localPlayerName));
+    }
+    init();
+  },[router]);
   return (
     <Box>
         <Box>

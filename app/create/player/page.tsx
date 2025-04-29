@@ -16,12 +16,15 @@ export default function Create() {
     } = useForm<{userID: number, name: string}>();
 
     useEffect(() => {
-        const _userID = Number(localStorage.getItem("userID"));
-        if(_userID === 0){
-            router.push("/")
+        const initUserID = () => {
+            const _userID = Number(localStorage.getItem("userID"));
+            if(_userID === 0){
+                router.push("/")
+            }
+            setUserID(_userID)
         }
-        setUserID(_userID)
-    }, [])
+        initUserID();
+    }, [router]);
 
     return(
         <Box display="flex" justifyContent="center">

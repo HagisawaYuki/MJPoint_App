@@ -49,17 +49,20 @@ export default function Create() {
                 const searchedPlayer2 = await searchPlayerByID(_playersID[1]);
                 const searchedPlayer3 = await searchPlayerByID(_playersID[2]);
                 const searchedPlayer4 = await searchPlayerByID(_playersID[3]);
-                searchedPlayer1 && searchedPlayer2 && searchedPlayer3 && searchedPlayer4 && 
-                    setPlayers([searchedPlayer1, searchedPlayer2, searchedPlayer3, searchedPlayer4]);
+                if(searchedPlayer1 && searchedPlayer2 && searchedPlayer3 && searchedPlayer4){
+                 setPlayers([searchedPlayer1, searchedPlayer2, searchedPlayer3, searchedPlayer4]);
+                }
             }
             
             //localStorageからgameIDを取り出す
             const _gameID = Number(localStorage.getItem("gameID"));
             const search_game = await searchGameByID(_gameID);
-            search_game && setGame(search_game);
+            if(search_game){
+             setGame(search_game);
+            }
         }
         createHanshuangInit();
-    },[]);
+    }, [router]);
     
     return(
         <Box>

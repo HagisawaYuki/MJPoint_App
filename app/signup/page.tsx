@@ -1,6 +1,5 @@
 "use client"
 import { Box, Button, Input, Text } from "@chakra-ui/react";
-import prisma from "@/lib/prisma";
 import { useForm } from "react-hook-form";
 import { signup } from "../api/auth/auth";
 import { useEffect } from "react";

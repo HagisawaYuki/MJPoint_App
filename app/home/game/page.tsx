@@ -85,13 +85,13 @@ export default function Home() {
       const gameID = Number(localStorage.getItem("gameID"));
       //gameIDからgame情報を取得
       const _game = await searchGameByID(gameID);
-      _game && setGame(_game);
+      if(_game)setGame(_game);
       //gameから半荘データを取得
       if(_game){
         const _hanshuangs = _game.hanshuangs.map(hanshuang => hanshuang);
         // console.log("hanshuangs", _hanshuangs && _hanshuangs[0].scores[0].score)
         if(_hanshuangs && _hanshuangs.length > 0){
-          _hanshuangs && setHanshuangs(_hanshuangs);
+          if(_hanshuangs)setHanshuangs(_hanshuangs);
           //gameIDから4プレイヤーIDを検索
           const playersID = _hanshuangs && _hanshuangs[0].scores.map(score => score.playerId);
           // setPlayersID(playersID);
@@ -116,7 +116,7 @@ export default function Home() {
       }
     }
     homeGameInit();
-  }, []);
+  },[router, searchParams]);
   return (
     <Box>
       <Box>

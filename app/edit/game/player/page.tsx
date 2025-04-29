@@ -7,7 +7,7 @@ import { editHanshuangScorePlayer, searchPlayer, searchPlayerByID } from "@/lib/
 
 export default function Home() {
     const router = useRouter();
-    const [gamePlayersID, setGamePlayersID] = useState<number[]>();
+    // const [gamePlayersID, setGamePlayersID] = useState<number[]>();
     const [gamePlayers, setGamePlayers] = useState<PlayerWithHanshuangScore[]>();
     const [allPlayers, setAllPlayers] = useState<PlayerWithHanshuangScore[]>();
     const [beforePlayer, setBeforePlayer] = useState<PlayerWithHanshuangScore>();
@@ -37,13 +37,15 @@ export default function Home() {
             //試合参加player情報をplayerIDから取得し、保存
             if(local_players){
                 const _playersID: number[] = JSON.parse(local_players);
-                setGamePlayersID(_playersID);
+                // setGamePlayersID(_playersID);
                 const searchedPlayer1 = await searchPlayerByID(_playersID[0]);
                 const searchedPlayer2 = await searchPlayerByID(_playersID[1]);
                 const searchedPlayer3 = await searchPlayerByID(_playersID[2]);
                 const searchedPlayer4 = await searchPlayerByID(_playersID[3]);
-                searchedPlayer1 && searchedPlayer2 && searchedPlayer3 && searchedPlayer4 && 
+                if(searchedPlayer1 && searchedPlayer2 && searchedPlayer3 && searchedPlayer4){
                     setGamePlayers([searchedPlayer1, searchedPlayer2, searchedPlayer3, searchedPlayer4]);
+                }
+                
                 //全player情報を取得
                 const _players = await searchPlayer(_userID);
                 setAllPlayers(_players.filter((player) => !_playersID.includes(player.id)));
@@ -51,7 +53,7 @@ export default function Home() {
             
         }
         editGamePlayerInit();
-    }, []);
+    },[router]);
     return (
         <Box>
             <Box>

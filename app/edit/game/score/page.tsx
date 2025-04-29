@@ -31,7 +31,7 @@ export default function Home() {
             setChip(_chip);
         }
         editGameScoreInit();
-    }, []);
+    }, [router]);
     return (
         <Box display="flex" justifyContent="center">
             <Box width="60%" bg="#EEE" padding="5%" marginTop="5%">

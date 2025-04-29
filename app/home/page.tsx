@@ -19,8 +19,8 @@ type GamesTable = {
 export default function Home() {
   const router = useRouter();
   //全プレイヤー情報
-  const [players, setPlayers] = useState<PlayerWithHanshuangScore[]>();
-  const [games, setGames] = useState<GameWithHanshuangsAndScores[]>();
+  // const [players, setPlayers] = useState<PlayerWithHanshuangScore[]>();
+  // const [games, setGames] = useState<GameWithHanshuangsAndScores[]>();
   const [gamesTable, setGamesTable] = useState<GamesTable>();
   const [t_gamesTable, setT_GamesTable] = useState<{game: GameWithHanshuangsAndScores, score: number, chip: number}[][]>();
   const [sumScores, setSumScores] = useState<{name: string; sumScore: number; chip: number}[]>();
@@ -83,8 +83,8 @@ export default function Home() {
       //全player・gameを取得して保存
       const searchedPlayers: PlayerWithHanshuangScore[] = await searchPlayer(_userID);
       const searchedGames: GameWithHanshuangsAndScores[] = await searchGames(_userID);
-      setPlayers(searchedPlayers);
-      setGames(searchedGames);
+      // setPlayers(searchedPlayers);
+      // setGames(searchedGames);
       //gamesTableを作成して保存
       const _gamesTable = createGameTable(searchedGames, searchedPlayers);
       setGamesTable(_gamesTable);
@@ -100,7 +100,7 @@ export default function Home() {
       calSum(_gamesTable);
     }
     homePageInit();
-  }, []);
+  },[router]);
 
   return (
     <Box>

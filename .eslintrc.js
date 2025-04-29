@@ -5,6 +5,7 @@ module.exports = {
     rules: {
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       'react-hooks/exhaustive-deps': 'warn',
+      '@typescript-eslint/no-empty-interface': 'off',
     },
   }
   

@@ -1,7 +1,6 @@
 "use client"
 import Header from "@/components/Header";
 import { Provider } from "@/components/ui/provider";
-import { useEffect, useState } from "react";
 
 
 export default function RootLayout({
